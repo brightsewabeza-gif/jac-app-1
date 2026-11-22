@@ -1,9 +1,343 @@
-<anvil-form layout="Minimal_Theme_1.Layouts.BaseLayout">
-    <anvil-block slot="actions"></anvil-block>
-    <anvil-block slot="content">
-        <anvil-component type="ColumnPanel" name="column_panel_1" prop:role="card" designer:placeholder="Add components here"></anvil-component>
-    </anvil-block>
-    <anvil-block slot="title">
-        <anvil-component type="Label" name="label_1" prop:role="h1" prop:text="Home"></anvil-component>
-    </anvil-block>
-</anvil-form>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JAC APP - Search Engine</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8ff;
+    color: #17233c;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 7%;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #087cf0;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #17233c;
+}
+
+nav a {
+    text-decoration: none;
+    color: #34445f;
+    margin-left: 22px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #087cf0;
+}
+
+main {
+    text-align: center;
+    padding: 100px 20px 40px;
+}
+
+.main-logo {
+    font-size: 65px;
+    font-weight: bold;
+    color: #087cf0;
+    letter-spacing: -3px;
+}
+
+.main-logo span {
+    color: #17233c;
+}
+
+.tagline {
+    color: #718096;
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+.search-box {
+    max-width: 690px;
+    margin: 38px auto 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce4f0;
+    border-radius: 50px;
+    padding: 8px 12px 8px 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 12px 8px;
+    color: #17233c;
+}
+
+.search-box button {
+    border: none;
+    background: #087cf0;
+    color: white;
+    padding: 13px 23px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-box button:hover {
+    background: #005bc4;
+}
+
+.search-options {
+    margin-top: 18px;
+    color: #718096;
+    font-size: 14px;
+}
+
+.search-options select {
+    padding: 8px 12px;
+    border: 1px solid #dce4f0;
+    border-radius: 20px;
+    background: white;
+    margin-left: 5px;
+}
+
+.suggestions {
+    margin-top: 35px;
+}
+
+.suggestions p {
+    color: #718096;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 10px 17px;
+    margin: 5px;
+    background: white;
+    border: 1px solid #e1e8f2;
+    border-radius: 25px;
+    color: #40516c;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.chip:hover {
+    background: #e8f2ff;
+    color: #087cf0;
+}
+
+.features {
+    max-width: 900px;
+    margin: 65px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #e7edf5;
+}
+
+.feature h3 {
+    color: #087cf0;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 13px;
+    color: #718096;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #8995a8;
+    font-size: 13px;
+    border-top: 1px solid #e7edf5;
+}
+
+@media(max-width:600px) {
+    main {
+        padding-top: 75px;
+    }
+
+    .main-logo {
+        font-size: 48px;
+    }
+
+    .search-box {
+        padding: 6px 8px 6px 12px;
+    }
+
+    .search-box button {
+        padding: 12px 15px;
+    }
+
+    nav a {
+        margin-left: 8px;
+        font-size: 12px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+
+
+<header>
+    <div class="logo">JAC<span> APP</span></div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<main>
+
+    <div class="main-logo">JAC<span> APP</span></div>
+
+    <p class="tagline">
+        Discover more. Explore everything. Search smarter.
+    </p>
+
+    <form id="searchForm" class="search-box">
+
+        <input type="search" id="searchInput" placeholder="Search anything on the internet..." required />
+
+        <button type="submit">Search</button>
+
+    </form>
+
+    <div class="search-options">
+        Search using:
+
+        <select id="engine">
+
+
+
+        </select>
+        <option value="google">Google</option>
+        <option value="bing">Bing</option>
+        <option value="duckduckgo">DuckDuckGo</option>
+    </div>
+
+    <div class="suggestions">
+        <p>Popular searches</p>
+
+        <span onclick="quickSearch('Technology')" class="chip">
+            Technology
+        </span>
+
+        <span onclick="quickSearch('Education')" class="chip">
+            Education
+        </span>
+
+        <span onclick="quickSearch('Science')" class="chip">
+            Science
+        </span>
+
+        <span onclick="quickSearch('Business ideas')" class="chip">
+            Business
+        </span>
+
+        <span onclick="quickSearch('Artificial Intelligence')" class="chip">
+            Artificial Intelligence
+        </span>
+    </div>
+
+</main>
+
+<section id="about" class="features">
+
+    <div class="feature">
+        <h3>Fast Search</h3>
+        <p>Find information across the internet with ease.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Easy to Use</h3>
+        <p>A simple and friendly search experience for everyone.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Explore More</h3>
+        <p>Discover knowledge, ideas and opportunities.</p>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 JAC APP. All rights reserved.
+    <br /><br />
+    Created by JAC APP Team.
+</footer>
+
+<script>
+
+const form = document.getElementById("searchForm");
+const input = document.getElementById("searchInput");
+const engine = document.getElementById("engine");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const query = input.value.trim();
+
+    if (!query) {
+        alert("Please enter something to search!");
+        return;
+    }
+
+    let url = "";
+
+    if (engine.value === "google") {
+        url = "https://www.google.com/search?q=";
+    }
+
+    else if (engine.value === "bing") {
+        url = "https://www.bing.com/search?q=";
+    }
+
+    else {
+        url = "https://duckduckgo.com/?q=";
+    }
+
+    window.open(url + encodeURIComponent(query), "_blank");
+
+});
+
+function quickSearch(word) {
+    input.value = word;
+    form.requestSubmit();
+}
+
+</script>
