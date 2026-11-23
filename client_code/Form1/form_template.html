@@ -1,3 +1,8 @@
+from ._anvil_designer import Form1Template
+
+class Form1(Form1Template):
+    def __init__(self, **properties):
+        self.init_components(**properties)
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JAC APP - Search Engine</title>
@@ -226,36 +231,48 @@ footer {
     <p class="tagline">
     </p>
 
-    <form id="searchForm" class="search-box">
+    <form anvil:on-dom:submit="self.search_form_submit" class="search-box">
 
-        <input type="search" id="searchInput" placeholder="Search anything on the internet..." required />
+        <input anvil:dom-node="search_input" type="search" placeholder="Search anything on the internet..." required />
 
         <button type="submit">Search</button>
 
     </form>
 
+    <div class="search-options">
+        Search with
+        <select anvil:dom-node="engine" aria-label="Search engine">
+
+
+
+        </select>
+        <option value="google">Google</option>
+        <option value="bing">Bing</option>
+        <option value="duckduckgo">DuckDuckGo</option>
+    </div>
+
     <div class="suggestions">
         <p>Popular searches</p>
 
-        <span onclick="quickSearch('Technology')" class="chip">
+        <button type="button" data-query="Technology" anvil:on-dom:click="self.quick_search_click" class="chip">
             Technology
-        </span>
+        </button>
 
-        <span onclick="quickSearch('Education')" class="chip">
+        <button type="button" data-query="Education" anvil:on-dom:click="self.quick_search_click" class="chip">
             Education
-        </span>
+        </button>
 
-        <span onclick="quickSearch('Science')" class="chip">
+        <button type="button" data-query="Science" anvil:on-dom:click="self.quick_search_click" class="chip">
             Science
-        </span>
+        </button>
 
-        <span onclick="quickSearch('Business ideas')" class="chip">
+        <button type="button" data-query="Business ideas" anvil:on-dom:click="self.quick_search_click" class="chip">
             Business
-        </span>
+        </button>
 
-        <span onclick="quickSearch('Artificial Intelligence')" class="chip">
+        <button type="button" data-query="Artificial Intelligence" anvil:on-dom:click="self.quick_search_click" class="chip">
             Artificial Intelligence
-        </span>
+        </button>
     </div>
 
 </main>
@@ -265,45 +282,3 @@ footer {
     <anvil-dropzone name="$dz_hehbsw"></anvil-dropzone>
 
 </section>
-
-<script>
-
-const form = document.getElementById("searchForm");
-const input = document.getElementById("searchInput");
-const engine = document.getElementById("engine");
-
-form.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const query = input.value.trim();
-
-    if (!query) {
-        alert("Please enter something to search!");
-        return;
-    }
-
-    let url = "";
-
-    if (engine.value === "google") {
-        url = "https://www.google.com/search?q=";
-    }
-
-    else if (engine.value === "bing") {
-        url = "https://www.bing.com/search?q=";
-    }
-
-    else {
-        url = "https://duckduckgo.com/?q=";
-    }
-
-    window.open(url + encodeURIComponent(query), "_blank");
-
-});
-
-function quickSearch(word) {
-    input.value = word;
-    form.requestSubmit();
-}
-
-</script>
