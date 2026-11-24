@@ -24,13 +24,18 @@ class Form1(Form1Template):
         if not query:
             return
 
-        engine = self.dom_nodes["engine"].value
-        if engine == "google":
-            base_url = "https://www.google.com/search"
-        elif engine == "bing":
-            base_url = "https://www.bing.com/search"
-        else:
+        def open_search(self, query):
+            query = query.strip()
+
+            if not query:
+                return
+
             base_url = "https://duckduckgo.com/"
+
+            search_url = anvil.js.new(URL, base_url)
+            search_url.searchParams.set("q", query)
+
+            open_window(search_url.href, "_blank")
 
         search_url = anvil.js.new(URL, base_url)
         search_url.searchParams.set("q", query)
