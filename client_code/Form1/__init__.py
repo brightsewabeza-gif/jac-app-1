@@ -1,4 +1,7 @@
 from ._anvil_designer import Form1Template
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 import anvil.js
 from anvil.js.window import URL, open as open_window
 

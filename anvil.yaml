@@ -1,4 +1,15 @@
 allow_embedding: false
+db_schema:
+  table_1:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      client_hidden: false
+      name: Column1
+      type: number
+    indexes: []
+    server: full
+    title: Table 1
 name: Minimal Theme 1
 package_name: Minimal_Theme_1
 runtime_options:
