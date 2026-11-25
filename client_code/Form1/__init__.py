@@ -1,7 +1,6 @@
-
 from ._anvil_designer import Form1Template
+import anvil.server
 import anvil.js
-from anvil.js.window import URL, open as open_window
 
 
 class Form1(Form1Template):
@@ -12,31 +11,64 @@ class Form1(Form1Template):
     def search_form_submit(self, event):
         event.preventDefault()
 
-        query = self.dom_nodes["search_input"].value
-        self.open_search(query)
+        query = self.dom_nodes["search_input"].value.strip()
 
-    def quick_search_click(self, event):
-        query = event.currentTarget.getAttribute("data-query")
+        if query:
+            self.display_search_results(query)
 
-        self.dom_nodes["search_input"].value = query
-        self.open_search(query)
+    def display_search_results(self, query):
 
-    def open_search(self, query):
-        query = query.strip()
+        section = self.dom_nodes["results_section"]
+        status = self.dom_nodes["search_status"]
+        results_area = self.dom_nodes["search_results"]
 
-        if not query:
-            return
+        section.style.display = "block"
+        status.innerText = "Searching JAC APP..."
+        results_area.innerHTML = ""
 
-        # JAC APP API address
-        base_url = "http://127.0.0.1:8000"
+        try:
+            data = anvil.server.call("search_web", query)
 
-        # Build JAC search URL
-        search_url = anvil.js.new(
-            URL,
-            base_url + "/search"
-        )
+            results = data.get("results", [])
 
-        search_url.searchParams.set("q", query)
+            if not results:
+                status.innerText = "No results found for: " + query
+                return
 
-        # Open JAC search results
-        open_window(search_url.href, "_blank")
+            status.innerText = (
+                str(len(results)) + " results found for: " + query
+            )
+
+            document = anvil.js.window.document
+
+            for result in results:
+
+                card = document.createElement("div")
+                card.className = "jac-result-card"
+
+                title = document.createElement("h3")
+                title.innerText = result.get("title", "Untitled")
+
+                description = document.createElement("p")
+                description.innerText = result.get("description", "")
+
+                card.appendChild(title)
+                card.appendChild(description)
+
+                url = result.get("url", "")
+
+                if url.startswith(("https://", "http://")):
+
+                    link = document.createElement("a")
+                    link.href = url
+                    link.target = "_blank"
+                    link.rel = "noopener noreferrer"
+                    link.innerText = url
+
+                    card.appendChild(link)
+
+                results_area.appendChild(card)
+
+        except Exception as error:
+            status.innerText = "Search failed. Please try again."
+            print("JAC APP error:", error)
