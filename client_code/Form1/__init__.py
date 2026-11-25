@@ -1,42 +1,42 @@
+
 from ._anvil_designer import Form1Template
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
 import anvil.js
 from anvil.js.window import URL, open as open_window
 
 
 class Form1(Form1Template):
+
     def __init__(self, **properties):
         super().__init__(**properties)
 
     def search_form_submit(self, event):
         event.preventDefault()
-        self.open_search(self.dom_nodes["search_input"].value)
+
+        query = self.dom_nodes["search_input"].value
+        self.open_search(query)
 
     def quick_search_click(self, event):
         query = event.currentTarget.getAttribute("data-query")
+
         self.dom_nodes["search_input"].value = query
         self.open_search(query)
 
     def open_search(self, query):
         query = query.strip()
+
         if not query:
             return
 
-        def open_search(self, query):
-            query = query.strip()
+        # JAC APP API address
+        base_url = "http://127.0.0.1:8000"
 
-            if not query:
-                return
+        # Build JAC search URL
+        search_url = anvil.js.new(
+            URL,
+            base_url + "/search"
+        )
 
-            base_url = "https://duckduckgo.com/"
-
-            search_url = anvil.js.new(URL, base_url)
-            search_url.searchParams.set("q", query)
-
-            open_window(search_url.href, "_blank")
-
-        search_url = anvil.js.new(URL, base_url)
         search_url.searchParams.set("q", query)
+
+        # Open JAC search results
         open_window(search_url.href, "_blank")
