@@ -1,75 +1,67 @@
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JAC APP - Search Engine</title>
-
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+.jac-app {
     font-family: Arial, sans-serif;
     background: #f5f8ff;
     color: #17233c;
     min-height: 100vh;
+    padding-bottom: 30px;
 }
 
-header {
+.jac-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 22px 7%;
+    background: white;
+    border-bottom: 1px solid #e7edf5;
 }
 
-.logo {
-    font-size: 28px;
+.jac-brand {
+    font-size: 27px;
     font-weight: bold;
     color: #087cf0;
-    letter-spacing: -1px;
 }
 
-.logo span {
+.jac-brand span {
     color: #17233c;
 }
 
-nav a {
-    text-decoration: none;
+.jac-nav a {
+    margin-left: 20px;
     color: #34445f;
-    margin-left: 22px;
+    text-decoration: none;
     font-size: 14px;
 }
 
-nav a:hover {
+.jac-nav a:hover {
     color: #087cf0;
 }
 
-main {
+.jac-main {
     text-align: center;
-    padding: 100px 20px 40px;
+    padding: 85px 20px 35px;
 }
 
-.main-logo {
-    font-size: 65px;
+.jac-main-logo {
+    font-size: 62px;
     font-weight: bold;
     color: #087cf0;
     letter-spacing: -3px;
 }
 
-.main-logo span {
+.jac-main-logo span {
     color: #17233c;
 }
 
-.tagline {
+.jac-tagline {
     color: #718096;
     margin-top: 12px;
-    font-size: 17px;
+    font-size: 16px;
 }
 
-.search-box {
+.jac-search-form {
     max-width: 690px;
-    margin: 38px auto 0;
+    margin: 35px auto;
     background: white;
     display: flex;
     align-items: center;
@@ -79,176 +71,201 @@ main {
     box-shadow: 0 8px 30px rgba(0,0,0,0.06);
 }
 
-.search-box input {
+.jac-search-input {
     flex: 1;
     min-width: 0;
     border: none;
     outline: none;
     font-size: 16px;
     padding: 12px 8px;
+    background: transparent;
     color: #17233c;
 }
 
-.search-box button {
+.jac-search-button {
     border: none;
     background: #087cf0;
     color: white;
-    padding: 13px 23px;
+    padding: 13px 24px;
     border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
 }
 
-.search-box button:hover {
+.jac-search-button:hover {
     background: #005bc4;
 }
 
-.search-options {
-    margin-top: 18px;
+.jac-results {
+    display: none;
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.jac-results h2 {
+    color: #17233c;
+    margin-bottom: 12px;
+}
+
+.jac-status {
     color: #718096;
+    margin-bottom: 18px;
     font-size: 14px;
 }
 
-.search-options select {
-    padding: 8px 12px;
-    border: 1px solid #dce4f0;
-    border-radius: 20px;
-    background: white;
-    margin-left: 5px;
+.jac-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.suggestions {
-    margin-top: 35px;
-}
-
-.suggestions p {
-    color: #718096;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.chip {
-    display: inline-block;
-    padding: 10px 17px;
-    margin: 5px;
+.jac-result-card {
     background: white;
     border: 1px solid #e1e8f2;
-    border-radius: 25px;
-    color: #40516c;
-    cursor: pointer;
-    font-size: 13px;
+    border-radius: 12px;
+    padding: 20px;
 }
 
-.chip:hover {
-    background: #e8f2ff;
+.jac-result-card h3 {
     color: #087cf0;
+    margin-bottom: 9px;
+    font-size: 19px;
 }
 
-.features {
-    max-width: 900px;
-    margin: 65px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.feature {
-    background: white;
-    padding: 25px 15px;
-    border-radius: 15px;
-    text-align: center;
-    border: 1px solid #e7edf5;
-}
-
-.feature h3 {
-    color: #087cf0;
+.jac-result-card p {
+    color: #52627a;
+    line-height: 1.6;
+    font-size: 14px;
     margin-bottom: 10px;
 }
 
-.feature p {
+.jac-result-card a {
+    color: #087cf0;
     font-size: 13px;
-    color: #718096;
-    line-height: 1.6;
+    overflow-wrap: anywhere;
+    text-decoration: none;
 }
 
-footer {
+.jac-result-card a:hover {
+    text-decoration: underline;
+}
+
+.jac-suggestions {
+    margin-top: 35px;
+    color: #718096;
+    font-size: 14px;
+}
+
+.jac-footer {
     text-align: center;
     padding: 25px;
     color: #8995a8;
     font-size: 13px;
     border-top: 1px solid #e7edf5;
+    background: white;
 }
 
-@media(max-width:600px) {
-    main {
-        padding-top: 75px;
+@media (max-width: 600px) {
+    .jac-header {
+        padding: 17px 5%;
     }
 
-    .main-logo {
-        font-size: 48px;
+    .jac-main {
+        padding-top: 65px;
     }
 
-    .search-box {
+    .jac-main-logo {
+        font-size: 46px;
+    }
+
+    .jac-search-form {
         padding: 6px 8px 6px 12px;
     }
 
-    .search-box button {
+    .jac-search-input {
+        font-size: 14px;
+    }
+
+    .jac-search-button {
         padding: 12px 15px;
     }
 
-    nav a {
+    .jac-nav a {
         margin-left: 8px;
         font-size: 12px;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
     }
 }
 </style>
 
-<main>
+<div class="jac-app">
 
-    <div class="main-logo">Jac<span> App</span></div>
+    <!-- HEADER -->
+    <header class="jac-header">
 
-    <p class="tagline">
-    </p>
+        <div class="jac-brand">
+            JAC<span> APP</span>
+        </div>
 
-    <form anvil:on-dom:submit="self.search_form_submit" class="search-box">
+        <nav class="jac-nav">
+            <a href="#jac-home">Home</a>
+            <a href="#jac-about">About</a>
+        </nav>
 
-        <input anvil:dom-node="search_input" type="search" placeholder="Search anything on the internet..." required />
+    </header>
 
-        <button type="submit">Search</button>
+    <!-- SEARCH PAGE -->
+    <main id="jac-home" class="jac-main">
 
-    </form>
+        <div class="jac-main-logo">
+            JAC<span> APP</span>
+        </div>
 
-    <!-- JAC SEARCH RESULTS -->
-    <section id="results-section" style="max-width: 850px;
-margin: 35px auto;
-padding: 0 20px;
-text-align: left;
-display: none;">
+        <p class="jac-tagline">
+            Discover information across the web.
+            <br />
+            Independent Web Search.
+        </p>
 
-                                <h2 style="color:#087cf0;">Search Results</h2>
+        <!-- SEARCH FORM -->
+        <form anvil:on-dom:submit="self.search_form_submit" class="jac-search-form">
 
-                                <p id="search-status" style="color:#718096;">
-                                    Searching...
-                                </p>
+            <input anvil:dom-node="search_input" type="search" placeholder="Search anything on the internet..." aria-label="Search the web" required class="jac-search-input" />
 
-                                <div id="search-results"></div>
+            <button type="submit" class="jac-search-button">
+                Search
+            </button>
 
-                            </section>
+        </form>
 
-    <div class="suggestions">
+        <!-- RESULTS AREA -->
+        <section anvil:dom-node="results_section" id="jac-results-section" aria-live="polite" class="jac-results">
 
-        <anvil-dropzone name="$dz_x07b40"></anvil-dropzone>
-    </div>
+            <h2>Search Results</h2>
 
-</main>
+            <p anvil:dom-node="search_status" class="jac-status">
+                Ready to search.
+            </p>
 
-<section id="about" class="features">
+            <div anvil:dom-node="search_results" class="jac-results-list"></div>
 
-    <anvil-dropzone name="$dz_hehbsw"></anvil-dropzone>
+        </section>
 
-</section>
+        <div class="jac-suggestions">
+            Start exploring the web
+        </div>
+
+    </main>
+
+    <!-- ABOUT -->
+    <section id="jac-about">
+        <anvil-dropzone name="$dz_hehbsw"></anvil-dropzone>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="jac-footer">
+        © 2026 JAC APP. All rights reserved.
+    </footer>
+
+</div>
