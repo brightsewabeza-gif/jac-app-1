@@ -7,4 +7,5 @@ unique_ids:
   modules:
     Layouts: ELOJJWADKHQOJGACGWLQ5VWRJPRTS2D5
   scripts: {}
-  server_modules: {}
+  server_modules:
+    SearchAPI: '1795547099811345919703648.06445'
