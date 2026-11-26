@@ -10,8 +10,9 @@ db_schema:
     indexes: []
     server: full
     title: Table 1
-name: Minimal Theme 1
-package_name: Minimal_Theme_1
+metadata: {description: Search every thing, logo_img: 'asset:Jac App logo.jpg', title: Jac App}
+name: Jac App
+package_name: Jac_App
 runtime_options:
   client_version: '3'
   server_spec: {base: python314}
