@@ -1,74 +1,240 @@
 <style>
+/* =====================================
+   JAC APP - THEME
+===================================== */
+
 .jac-app {
-    font-family: Arial, sans-serif;
-    background: #f5f8ff;
-    color: #17233c;
+    --bg: #101827;
+    --surface: #1e293b;
+    --surface-hover: #263449;
+    --text: #f1f5f9;
+    --muted: #a0aec0;
+    --border: #334155;
+    --input-text: #f1f5f9;
+    --brand: #087cf0;
+    --brand-hover: #005bc4;
+    --card-text: #cbd5e1;
+
+    width: 100%;
     min-height: 100vh;
     padding-bottom: 30px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none;
+    color-scheme: dark;
+    isolation: isolate;
 }
+
+.jac-app *,
+.jac-app *::before,
+.jac-app *::after {
+    box-sizing: border-box;
+}
+
+/* =====================================
+   REMOVE SPOTLIGHT FROM ANVIL WRAPPER
+===================================== */
+
+.anvil-panel:has(#jac-app) {
+    background: #101827 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+.anvil-panel:has(#jac-app)::before,
+.anvil-panel:has(#jac-app)::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Remove decorative effects inside JAC APP */
+
+.jac-app::before,
+.jac-app::after,
+.jac-main::before,
+.jac-main::after,
+.jac-main-logo::before,
+.jac-main-logo::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+.jac-app[data-theme="light"] {
+    --bg: #f5f8ff;
+    --surface: #ffffff;
+    --surface-hover: #edf4ff;
+    --text: #17233c;
+    --muted: #718096;
+    --border: #dce4f0;
+    --input-text: #17233c;
+    --brand: #087cf0;
+    --brand-hover: #005bc4;
+    --card-text: #52627a;
+
+    color-scheme: light;
+}
+
+.jac-app[data-theme="light"] {
+    background: var(--bg) !important;
+}
+
+.jac-app[data-theme="light"] ~ * {
+    color-scheme: light;
+}
+
+/* =====================================
+   HEADER
+===================================== */
 
 .jac-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 7%;
-    background: white;
-    border-bottom: 1px solid #e7edf5;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 7%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
 }
 
 .jac-brand {
     font-size: 27px;
     font-weight: bold;
-    color: #087cf0;
+    color: var(--brand);
+    letter-spacing: -1px;
 }
 
 .jac-brand span {
-    color: #17233c;
+    color: var(--text);
 }
 
-.jac-nav a {
-    margin-left: 20px;
-    color: #34445f;
-    text-decoration: none;
-    font-size: 14px;
+.jac-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
 }
 
-.jac-nav a:hover {
-    color: #087cf0;
+/* =====================================
+   THEME SWITCH
+===================================== */
+
+.jac-theme-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    white-space: nowrap;
 }
+
+.jac-theme-label {
+    color: var(--muted);
+}
+
+.jac-app[data-theme="dark"] .jac-dark-label,
+.jac-app[data-theme="light"] .jac-light-label {
+    color: var(--text);
+    font-weight: bold;
+}
+
+.jac-theme-control input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 46px;
+    height: 25px;
+    background: #64748b;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.jac-theme-control input:checked {
+    background: var(--brand);
+}
+
+.jac-theme-control input::before {
+    content: "";
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s;
+}
+
+.jac-theme-control input:checked::before {
+    transform: translateX(21px);
+}
+
+/* =====================================
+   MAIN SEARCH PAGE
+===================================== */
 
 .jac-main {
     text-align: center;
     padding: 85px 20px 35px;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
 }
 
 .jac-main-logo {
     font-size: 62px;
     font-weight: bold;
-    color: #087cf0;
+    color: var(--brand);
     letter-spacing: -3px;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
 .jac-main-logo span {
-    color: #17233c;
+    color: var(--text);
 }
 
 .jac-tagline {
-    color: #718096;
+    color: var(--muted);
     margin-top: 12px;
     font-size: 16px;
 }
 
+/* =====================================
+   SEARCH FORM
+===================================== */
+
 .jac-search-form {
     max-width: 690px;
     margin: 35px auto;
-    background: white;
+    background: var(--surface);
     display: flex;
     align-items: center;
-    border: 1px solid #dce4f0;
+    border: 1px solid var(--border);
     border-radius: 50px;
     padding: 8px 12px 8px 20px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    box-shadow: none !important;
 }
 
 .jac-search-input {
@@ -79,12 +245,16 @@
     font-size: 16px;
     padding: 12px 8px;
     background: transparent;
-    color: #17233c;
+    color: var(--input-text);
+}
+
+.jac-search-input::placeholder {
+    color: var(--muted);
 }
 
 .jac-search-button {
     border: none;
-    background: #087cf0;
+    background: var(--brand);
     color: white;
     padding: 13px 24px;
     border-radius: 30px;
@@ -93,8 +263,98 @@
 }
 
 .jac-search-button:hover {
-    background: #005bc4;
+    background: var(--brand-hover);
 }
+
+/* =====================================
+   QUICK ACCESS SHORTCUTS
+===================================== */
+
+.jac-shortcuts {
+    max-width: 690px;
+    margin: -12px auto 35px;
+    padding: 0 20px;
+}
+
+.jac-shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+    justify-items: center;
+}
+
+.jac-shortcut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    max-width: 105px;
+    padding: 12px 8px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.jac-shortcut:hover {
+    background: var(--surface-hover);
+    border-color: var(--border);
+    transform: translateY(-3px);
+}
+
+.jac-shortcut-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 17px;
+    background: #ffffff;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.14);
+}
+
+.jac-shortcut-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.jac-shortcut-name {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .jac-shortcuts {
+        padding: 0 8px;
+    }
+
+    .jac-shortcut-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .jac-shortcut {
+        max-width: 95px;
+        padding: 10px 5px;
+    }
+
+    .jac-shortcut-icon {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+/* =====================================
+   SEARCH RESULTS
+===================================== */
 
 .jac-results {
     display: none;
@@ -105,12 +365,12 @@
 }
 
 .jac-results h2 {
-    color: #17233c;
+    color: var(--text);
     margin-bottom: 12px;
 }
 
 .jac-status {
-    color: #718096;
+    color: var(--muted);
     margin-bottom: 18px;
     font-size: 14px;
 }
@@ -122,27 +382,31 @@
 }
 
 .jac-result-card {
-    background: white;
-    border: 1px solid #e1e8f2;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
 }
 
+.jac-result-card:hover {
+    background: var(--surface-hover);
+}
+
 .jac-result-card h3 {
-    color: #087cf0;
-    margin-bottom: 9px;
+    color: var(--brand);
+    margin: 0 0 9px;
     font-size: 19px;
 }
 
 .jac-result-card p {
-    color: #52627a;
+    color: var(--card-text);
     line-height: 1.6;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
 }
 
 .jac-result-card a {
-    color: #087cf0;
+    color: var(--brand);
     font-size: 13px;
     overflow-wrap: anywhere;
     text-decoration: none;
@@ -152,24 +416,38 @@
     text-decoration: underline;
 }
 
-.jac-suggestions {
-    margin-top: 35px;
-    color: #718096;
-    font-size: 14px;
+/* =====================================
+   ABOUT SECTION
+===================================== */
+
+#jac-about {
+    background: transparent;
 }
 
-.jac-footer {
-    text-align: center;
-    padding: 25px;
-    color: #8995a8;
-    font-size: 13px;
-    border-top: 1px solid #e7edf5;
-    background: white;
-}
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
 
 @media (max-width: 600px) {
     .jac-header {
         padding: 17px 5%;
+    }
+
+    .jac-nav {
+        gap: 10px;
+    }
+
+    .jac-theme-control {
+        gap: 5px;
+        font-size: 11px;
+    }
+
+    .jac-theme-control input {
+        width: 40px;
+    }
+
+    .jac-theme-control input:checked::before {
+        transform: translateX(15px);
     }
 
     .jac-main {
@@ -192,16 +470,18 @@
         padding: 12px 15px;
     }
 
-    .jac-nav a {
-        margin-left: 8px;
-        font-size: 12px;
+    .jac-result-card {
+        padding: 16px;
     }
 }
 </style>
 
-<div class="jac-app">
+<!-- =====================================
+     JAC APP INTERFACE
+===================================== -->
 
-    <!-- HEADER -->
+<div id="jac-app" data-theme="dark" class="jac-app">
+
     <header class="jac-header">
 
         <div class="jac-brand">
@@ -209,19 +489,35 @@
         </div>
 
         <nav class="jac-nav">
-            <anvil-dropzone name="$dz_4hibr4"></anvil-dropzone>
+
+            <label class="jac-theme-control">
+
+                <span class="jac-theme-label jac-light-label">
+                    ☀️ Light mode
+                </span>
+
+                <input id="jac-theme-toggle" type="checkbox" checked aria-label="Switch between light and dark mode" />
+
+                <span class="jac-theme-label jac-dark-label">
+                    🌙 Dark mode
+                </span>
+
+            </label>
+
         </nav>
 
     </header>
 
-    <!-- SEARCH PAGE -->
     <main id="jac-home" class="jac-main">
 
         <div class="jac-main-logo">
             JAC<span> APP</span>
         </div>
 
-        <!-- SEARCH FORM -->
+        <p class="jac-tagline">
+            Search the web. Discover more.
+        </p>
+
         <form anvil:on-dom:submit="self.search_form_submit" class="jac-search-form">
 
             <input anvil:dom-node="search_input" type="search" placeholder="Search anything on the internet..." aria-label="Search the web" required class="jac-search-input" />
@@ -232,7 +528,48 @@
 
         </form>
 
-        <!-- RESULTS AREA -->
+        <!-- QUICK ACCESS APP SHORTCUTS: public site URLs; browser login cookies may still sign the visitor in. -->
+        <section aria-label="Quick access websites" class="jac-shortcuts">
+            <div class="jac-shortcut-grid">
+
+                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open ChatGPT in a new tab" class="jac-shortcut">
+                    <span class="jac-shortcut-icon">
+                        <img src="https://cdn.simpleicons.org/openai" alt="ChatGPT logo" />
+                    </span>
+                    <span class="jac-shortcut-name">ChatGPT</span>
+                </a>
+
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open YouTube in a new tab" class="jac-shortcut">
+                    <span class="jac-shortcut-icon">
+                        <img src="https://cdn.simpleicons.org/youtube" alt="YouTube logo" />
+                    </span>
+                    <span class="jac-shortcut-name">YouTube</span>
+                </a>
+
+                <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Gmail in a new tab" class="jac-shortcut">
+                    <span class="jac-shortcut-icon">
+                        <img src="https://cdn.simpleicons.org/gmail" alt="Gmail logo" />
+                    </span>
+                    <span class="jac-shortcut-name">Gmail</span>
+                </a>
+
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Facebook in a new tab" class="jac-shortcut">
+                    <span class="jac-shortcut-icon">
+                        <img src="https://cdn.simpleicons.org/facebook" alt="Facebook logo" />
+                    </span>
+                    <span class="jac-shortcut-name">Facebook</span>
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Instagram in a new tab" class="jac-shortcut">
+                    <span class="jac-shortcut-icon">
+                        <img src="https://cdn.simpleicons.org/instagram" alt="Instagram logo" />
+                    </span>
+                    <span class="jac-shortcut-name">Instagram</span>
+                </a>
+
+            </div>
+        </section>
+
         <section anvil:dom-node="results_section" id="jac-results-section" aria-live="polite" class="jac-results">
 
             <h2>Search Results</h2>
@@ -245,17 +582,65 @@
 
         </section>
 
-        <div class="jac-suggestions">
-            Start exploring the web
-        </div>
-
     </main>
 
-    <!-- ABOUT -->
     <section id="jac-about">
         <anvil-dropzone name="$dz_hehbsw"></anvil-dropzone>
     </section>
 
-    <!-- FOOTER -->
-
 </div>
+
+<!-- =====================================
+     THEME SWITCH FUNCTIONALITY
+===================================== -->
+
+<script>
+(function () {
+
+    function initializeJacTheme() {
+
+        const app = document.getElementById("jac-app");
+        const toggle = document.getElementById("jac-theme-toggle");
+
+        if (!app || !toggle) {
+            return;
+        }
+
+        function applyTheme(theme) {
+
+            const selectedTheme =
+                theme === "light" ? "light" : "dark";
+
+            app.setAttribute("data-theme", selectedTheme);
+            toggle.checked = selectedTheme === "dark";
+
+            try {
+                localStorage.setItem("jac-theme", selectedTheme);
+            } catch (error) {
+                // Theme works even if storage is unavailable.
+            }
+        }
+
+        let savedTheme = "dark";
+
+        try {
+            savedTheme = localStorage.getItem("jac-theme") || "dark";
+        } catch (error) {
+            savedTheme = "dark";
+        }
+
+        applyTheme(savedTheme);
+
+        toggle.addEventListener("change", function () {
+            applyTheme(toggle.checked ? "dark" : "light");
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeJacTheme);
+    } else {
+        initializeJacTheme();
+    }
+
+})();
+</script>
