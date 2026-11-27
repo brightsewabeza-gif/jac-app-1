@@ -1,320 +1,70 @@
 <style>
-/* =====================================
-   JAC APP - THEME
-===================================== */
-
-.jac-app {
-    --bg: #101827;
-    --surface: #1e293b;
-    --surface-hover: #263449;
-    --text: #f1f5f9;
-    --muted: #a0aec0;
-    --border: #334155;
-    --input-text: #f1f5f9;
-    --brand: #087cf0;
-    --brand-hover: #005bc4;
-    --card-text: #cbd5e1;
-
-    width: 100%;
-    min-height: 100vh;
-    padding-bottom: 30px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    color: var(--text);
-    background: var(--bg) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    text-shadow: none;
-    color-scheme: dark;
-    isolation: isolate;
-}
-
-.jac-app *,
-.jac-app *::before,
-.jac-app *::after {
-    box-sizing: border-box;
-}
-
-/* =====================================
-   REMOVE SPOTLIGHT FROM ANVIL WRAPPER
-===================================== */
-
-.anvil-panel:has(#jac-app) {
-    background: #101827 !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-.anvil-panel:has(#jac-app)::before,
-.anvil-panel:has(#jac-app)::after {
-    content: none !important;
-    display: none !important;
-    background: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-/* Remove decorative effects inside JAC APP */
-
-.jac-app::before,
-.jac-app::after,
-.jac-main::before,
-.jac-main::after,
-.jac-main-logo::before,
-.jac-main-logo::after {
-    content: none !important;
-    display: none !important;
-    background: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-/* =====================================
-   LIGHT MODE
-===================================== */
-
-.jac-app[data-theme="light"] {
-    --bg: #f5f8ff;
-    --surface: #ffffff;
-    --surface-hover: #edf4ff;
-    --text: #17233c;
-    --muted: #718096;
-    --border: #dce4f0;
-    --input-text: #17233c;
-    --brand: #087cf0;
-    --brand-hover: #005bc4;
-    --card-text: #52627a;
-
-    color-scheme: light;
-}
-
-.jac-app[data-theme="light"] {
-    background: var(--bg) !important;
-}
-
-.jac-app[data-theme="light"] ~ * {
-    color-scheme: light;
-}
-
-/* =====================================
-   HEADER
-===================================== */
-
-.jac-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 20px 7%;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-}
-
-.jac-brand {
-    font-size: 27px;
-    font-weight: bold;
-    color: var(--brand);
-    letter-spacing: -1px;
-}
-
-.jac-brand span {
-    color: var(--text);
-}
-
-.jac-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 18px;
-}
-
-/* =====================================
-   THEME SWITCH
-===================================== */
-
-.jac-theme-control {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 13px;
-    white-space: nowrap;
-}
-
-.jac-theme-label {
-    color: var(--muted);
-}
-
-.jac-app[data-theme="dark"] .jac-dark-label,
-.jac-app[data-theme="light"] .jac-light-label {
-    color: var(--text);
-    font-weight: bold;
-}
-
-.jac-theme-control input {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 46px;
-    height: 25px;
-    background: #64748b;
-    border-radius: 30px;
-    position: relative;
-    cursor: pointer;
-    margin: 0;
-    flex-shrink: 0;
-}
-
-.jac-theme-control input:checked {
-    background: var(--brand);
-}
-
-.jac-theme-control input::before {
-    content: "";
-    position: absolute;
-    width: 19px;
-    height: 19px;
-    background: white;
-    border-radius: 50%;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.2s;
-}
-
-.jac-theme-control input:checked::before {
-    transform: translateX(21px);
-}
-
-/* =====================================
-   MAIN SEARCH PAGE
-===================================== */
-
-.jac-main {
-    text-align: center;
-    padding: 85px 20px 35px;
-    background: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-.jac-main-logo {
-    font-size: 62px;
-    font-weight: bold;
-    color: var(--brand);
-    letter-spacing: -3px;
-    text-shadow: none !important;
-    filter: none !important;
-}
-
-.jac-main-logo span {
-    color: var(--text);
-}
-
-.jac-tagline {
-    color: var(--muted);
-    margin-top: 12px;
-    font-size: 16px;
-}
-
-/* =====================================
-   SEARCH FORM
-===================================== */
-
-.jac-search-form {
-    max-width: 690px;
-    margin: 35px auto;
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    padding: 8px 12px 8px 20px;
-    box-shadow: none !important;
-}
-
-.jac-search-input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 12px 8px;
-    background: transparent;
-    color: var(--input-text);
-}
-
-.jac-search-input::placeholder {
-    color: var(--muted);
-}
-
-.jac-search-button {
-    border: none;
-    background: var(--brand);
-    color: white;
-    padding: 13px 24px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.jac-search-button:hover {
-    background: var(--brand-hover);
-}
-
-/* =====================================
-   QUICK ACCESS SHORTCUTS
-===================================== */
+/* =================================
+   JAC APP - APP SHORTCUTS
+================================= */
 
 .jac-shortcuts {
-    max-width: 690px;
-    margin: -12px auto 35px;
+    width: 100%;
+    max-width: 1150px;
+    margin: 25px auto 45px;
     padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.jac-shortcuts-title {
+    color: var(--text, #f1f5f9);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 18px;
 }
 
 .jac-shortcut-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 18px;
-    justify-items: center;
 }
 
 .jac-shortcut {
+    min-height: 165px;
+    padding: 24px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
-    width: 100%;
-    max-width: 105px;
-    padding: 12px 8px;
-    border: 1px solid transparent;
-    border-radius: 15px;
-    color: var(--text);
+    justify-content: center;
+    gap: 16px;
+
+    background: var(--surface, #1e293b);
+    border: 1px solid var(--border, #334155);
+    border-radius: 28px;
+
     text-decoration: none;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    color: var(--text, #f1f5f9);
+
+    transition: transform .2s ease,
+                border-color .2s ease,
+                background .2s ease;
+    box-sizing: border-box;
 }
 
 .jac-shortcut:hover {
-    background: var(--surface-hover);
-    border-color: var(--border);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    border-color: #087cf0;
+    background: var(--surface-hover, #263449);
 }
 
 .jac-shortcut-icon {
+    width: 82px;
+    height: 82px;
+    background: #ffffff;
+    border-radius: 27px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 58px;
-    height: 58px;
-    padding: 10px;
+
+    padding: 13px;
+    box-sizing: border-box;
     overflow: hidden;
-    border-radius: 17px;
-    background: #ffffff;
-    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.14);
 }
 
 .jac-shortcut-icon img {
@@ -325,322 +75,138 @@
 }
 
 .jac-shortcut-name {
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     text-align: center;
 }
 
-@media (max-width: 600px) {
-    .jac-shortcuts {
-        padding: 0 8px;
-    }
-
+/* Tablet */
+@media (max-width: 850px) {
     .jac-shortcut-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .jac-shortcut-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
     }
 
     .jac-shortcut {
-        max-width: 95px;
-        padding: 10px 5px;
+        min-height: 145px;
+        padding: 18px 8px;
     }
 
     .jac-shortcut-icon {
-        width: 54px;
-        height: 54px;
-    }
-}
-
-/* =====================================
-   SEARCH RESULTS
-===================================== */
-
-.jac-results {
-    display: none;
-    max-width: 850px;
-    margin: 35px auto;
-    padding: 0 20px;
-    text-align: left;
-}
-
-.jac-results h2 {
-    color: var(--text);
-    margin-bottom: 12px;
-}
-
-.jac-status {
-    color: var(--muted);
-    margin-bottom: 18px;
-    font-size: 14px;
-}
-
-.jac-results-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.jac-result-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.jac-result-card:hover {
-    background: var(--surface-hover);
-}
-
-.jac-result-card h3 {
-    color: var(--brand);
-    margin: 0 0 9px;
-    font-size: 19px;
-}
-
-.jac-result-card p {
-    color: var(--card-text);
-    line-height: 1.6;
-    font-size: 14px;
-    margin: 0 0 10px;
-}
-
-.jac-result-card a {
-    color: var(--brand);
-    font-size: 13px;
-    overflow-wrap: anywhere;
-    text-decoration: none;
-}
-
-.jac-result-card a:hover {
-    text-decoration: underline;
-}
-
-/* =====================================
-   ABOUT SECTION
-===================================== */
-
-#jac-about {
-    background: transparent;
-}
-
-/* =====================================
-   MOBILE RESPONSIVENESS
-===================================== */
-
-@media (max-width: 600px) {
-    .jac-header {
-        padding: 17px 5%;
-    }
-
-    .jac-nav {
-        gap: 10px;
-    }
-
-    .jac-theme-control {
-        gap: 5px;
-        font-size: 11px;
-    }
-
-    .jac-theme-control input {
-        width: 40px;
-    }
-
-    .jac-theme-control input:checked::before {
-        transform: translateX(15px);
-    }
-
-    .jac-main {
-        padding-top: 65px;
-    }
-
-    .jac-main-logo {
-        font-size: 46px;
-    }
-
-    .jac-search-form {
-        padding: 6px 8px 6px 12px;
-    }
-
-    .jac-search-input {
-        font-size: 14px;
-    }
-
-    .jac-search-button {
-        padding: 12px 15px;
-    }
-
-    .jac-result-card {
-        padding: 16px;
+        width: 70px;
+        height: 70px;
     }
 }
 </style>
 
-<!-- =====================================
-     JAC APP INTERFACE
-===================================== -->
+<section class="jac-shortcuts">
 
-<div id="jac-app" data-theme="dark" class="jac-app">
+    <h2 class="jac-shortcuts-title">Quick Access</h2>
 
-    <header class="jac-header">
+    <div class="jac-shortcut-grid">
 
-        <div class="jac-brand">
-            JAC<span> APP</span>
-        </div>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" />
+            </span>
+            <span class="jac-shortcut-name">YouTube</span>
+        </a>
 
-        <nav class="jac-nav">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" />
+            </span>
+            <span class="jac-shortcut-name">Facebook</span>
+        </a>
 
-            <label class="jac-theme-control">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" />
+            </span>
+            <span class="jac-shortcut-name">Instagram</span>
+        </a>
 
-                <span class="jac-theme-label jac-light-label">
-                    ☀️ Light mode
-                </span>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok" />
+            </span>
+            <span class="jac-shortcut-name">TikTok</span>
+        </a>
 
-                <input id="jac-theme-toggle" type="checkbox" checked aria-label="Switch between light and dark mode" />
+        <!-- X -->
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/x/000000" alt="X" />
+            </span>
+            <span class="jac-shortcut-name">X</span>
+        </a>
 
-                <span class="jac-theme-label jac-dark-label">
-                    🌙 Dark mode
-                </span>
+        <!-- Canva -->
+        <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://www.google.com/s2/favicons?domain=canva.com&amp;sz=128" alt="Canva" />
+            </span>
+            <span class="jac-shortcut-name">Canva</span>
+        </a>
 
-            </label>
+        <!-- Netflix -->
+        <a href="https://www.netflix.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/netflix/E50914" alt="Netflix" />
+            </span>
+            <span class="jac-shortcut-name">Netflix</span>
+        </a>
 
-        </nav>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://www.google.com/s2/favicons?domain=linkedin.com&amp;sz=128" alt="LinkedIn" />
+            </span>
+            <span class="jac-shortcut-name">LinkedIn</span>
+        </a>
 
-    </header>
+        <!-- Pinterest -->
+        <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/pinterest/BD081C" alt="Pinterest" />
+            </span>
+            <span class="jac-shortcut-name">Pinterest</span>
+        </a>
 
-    <main id="jac-home" class="jac-main">
+        <!-- GitHub -->
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" />
+            </span>
+            <span class="jac-shortcut-name">GitHub</span>
+        </a>
 
-        <div class="jac-main-logo">
-            JAC<span> APP</span>
-        </div>
+        <!-- Wikipedia -->
+        <a href="https://www.wikipedia.org/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://cdn.simpleicons.org/wikipedia/000000" alt="Wikipedia" />
+            </span>
+            <span class="jac-shortcut-name">Wikipedia</span>
+        </a>
 
-        <p class="jac-tagline">
-            Search the web. Discover more.
-        </p>
+        <!-- Amazon -->
+        <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" class="jac-shortcut">
+            <span class="jac-shortcut-icon">
+                <img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="Amazon" />
+            </span>
+            <span class="jac-shortcut-name">Amazon</span>
+        </a>
 
-        <form anvil:on-dom:submit="self.search_form_submit" class="jac-search-form">
-
-            <input anvil:dom-node="search_input" type="search" placeholder="Search anything on the internet..." aria-label="Search the web" required class="jac-search-input" />
-
-            <button type="submit" class="jac-search-button">
-                Search
-            </button>
-
-        </form>
-
-        <!-- QUICK ACCESS APP SHORTCUTS: public site URLs; browser login cookies may still sign the visitor in. -->
-        <section aria-label="Quick access websites" class="jac-shortcuts">
-            <div class="jac-shortcut-grid">
-
-                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open ChatGPT in a new tab" class="jac-shortcut">
-                    <span class="jac-shortcut-icon">
-                        <img src="https://cdn.simpleicons.org/openai" alt="ChatGPT logo" />
-                    </span>
-                    <span class="jac-shortcut-name">ChatGPT</span>
-                </a>
-
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open YouTube in a new tab" class="jac-shortcut">
-                    <span class="jac-shortcut-icon">
-                        <img src="https://cdn.simpleicons.org/youtube" alt="YouTube logo" />
-                    </span>
-                    <span class="jac-shortcut-name">YouTube</span>
-                </a>
-
-                <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Gmail in a new tab" class="jac-shortcut">
-                    <span class="jac-shortcut-icon">
-                        <img src="https://cdn.simpleicons.org/gmail" alt="Gmail logo" />
-                    </span>
-                    <span class="jac-shortcut-name">Gmail</span>
-                </a>
-
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Facebook in a new tab" class="jac-shortcut">
-                    <span class="jac-shortcut-icon">
-                        <img src="https://cdn.simpleicons.org/facebook" alt="Facebook logo" />
-                    </span>
-                    <span class="jac-shortcut-name">Facebook</span>
-                </a>
-
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Open Instagram in a new tab" class="jac-shortcut">
-                    <span class="jac-shortcut-icon">
-                        <img src="https://cdn.simpleicons.org/instagram" alt="Instagram logo" />
-                    </span>
-                    <span class="jac-shortcut-name">Instagram</span>
-                </a>
-
-            </div>
-        </section>
-
-        <section anvil:dom-node="results_section" id="jac-results-section" aria-live="polite" class="jac-results">
-
-            <h2>Search Results</h2>
-
-            <p anvil:dom-node="search_status" class="jac-status">
-                Ready to search.
-            </p>
-
-            <div anvil:dom-node="search_results" class="jac-results-list"></div>
-
-        </section>
-
-    </main>
-
-    <section id="jac-about">
-        <anvil-dropzone name="$dz_hehbsw"></anvil-dropzone>
-    </section>
-
-</div>
-
-<!-- =====================================
-     THEME SWITCH FUNCTIONALITY
-===================================== -->
-
-<script>
-(function () {
-
-    function initializeJacTheme() {
-
-        const app = document.getElementById("jac-app");
-        const toggle = document.getElementById("jac-theme-toggle");
-
-        if (!app || !toggle) {
-            return;
-        }
-
-        function applyTheme(theme) {
-
-            const selectedTheme =
-                theme === "light" ? "light" : "dark";
-
-            app.setAttribute("data-theme", selectedTheme);
-            toggle.checked = selectedTheme === "dark";
-
-            try {
-                localStorage.setItem("jac-theme", selectedTheme);
-            } catch (error) {
-                // Theme works even if storage is unavailable.
-            }
-        }
-
-        let savedTheme = "dark";
-
-        try {
-            savedTheme = localStorage.getItem("jac-theme") || "dark";
-        } catch (error) {
-            savedTheme = "dark";
-        }
-
-        applyTheme(savedTheme);
-
-        toggle.addEventListener("change", function () {
-            applyTheme(toggle.checked ? "dark" : "light");
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initializeJacTheme);
-    } else {
-        initializeJacTheme();
-    }
-
-})();
-</script>
+    </div>
+</section>
